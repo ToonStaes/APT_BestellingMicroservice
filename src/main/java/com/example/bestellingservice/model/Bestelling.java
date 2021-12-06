@@ -9,13 +9,13 @@ public class Bestelling {
     @Id
     private String id;
     private String bestelNummer;
-    private String personeelsnummer;
+    private String personeelsNummer;
     private List<String> gerechten;
     private double totaalPrijs;
 
-    public Bestelling(String bestelNummer, String personeelsnummer, List<String> gerechten, double totaalPrijs) {
+    public Bestelling(String bestelNummer, String personeelsNummer, List<String> gerechten, double totaalPrijs) {
         this.bestelNummer = bestelNummer;
-        this.personeelsnummer = personeelsnummer;
+        this.personeelsNummer = personeelsNummer;
         this.gerechten = gerechten;
         this.totaalPrijs = totaalPrijs;
     }
@@ -24,24 +24,16 @@ public class Bestelling {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
     public String getBestelNummer() {
         return bestelNummer;
     }
 
-    public void setBestelNummer(String bestelNummer) {
-        this.bestelNummer = bestelNummer;
+    public String getPersoneelsNummer() {
+        return personeelsNummer;
     }
 
-    public String getPersoneelsnummer() {
-        return personeelsnummer;
-    }
-
-    public void setPersoneelsnummer(String personeelsnummer) {
-        this.personeelsnummer = personeelsnummer;
+    public void setPersoneelsNummer(String personeelsNummer) {
+        this.personeelsNummer = personeelsNummer;
     }
 
     public List<String> getGerechten() {

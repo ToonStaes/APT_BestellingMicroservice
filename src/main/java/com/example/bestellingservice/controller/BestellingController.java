@@ -20,14 +20,14 @@ public class BestellingController {
         return bestellingRepository.findAll();
     }
 
-    @GetMapping("/bestellingen/{bestelNummer}")
+    @GetMapping("/bestellingen/bestelnummer/{bestelNummer}")
     public Bestelling getBestellingByBestelNummer(@PathVariable String bestelNummer) {
         return bestellingRepository.findBestellingByBestelNummer(bestelNummer);
     }
 
-    @GetMapping("/bestellingen/{personeelsnummer}")
-    public List<Bestelling> getBestellingenByPersoneelsnummer(@PathVariable String personeelsnummer) {
-        return bestellingRepository.findBestellingByPersoneelsnummer(personeelsnummer);
+    @GetMapping("/bestellingen/personeelsnummer/{personeelsNummer}")
+    public List<Bestelling> getBestellingenByPersoneelsNummer(@PathVariable String personeelsNummer) {
+        return bestellingRepository.findBestellingByPersoneelsNummer(personeelsNummer);
     }
 
     @PostMapping("/bestellingen")
@@ -38,18 +38,19 @@ public class BestellingController {
 
     @PutMapping("/bestellingen")
     public Bestelling updateBestelling(@RequestBody Bestelling updatedBestelling) {
-        Bestelling retrievedBestelling = bestellingRepository.findBestellingByBestelNummerAndAndPersoneelsnummer(updatedBestelling.getBestelNummer(), updatedBestelling.getPersoneelsnummer());
-        retrievedBestelling.setBestelNummer(updatedBestelling.getBestelNummer());
-        retrievedBestelling.setPersoneelsnummer(updatedBestelling.getPersoneelsnummer());
+        Bestelling retrievedBestelling = bestellingRepository.findBestellingByBestelNummer(updatedBestelling.getBestelNummer());
+        retrievedBestelling.setPersoneelsNummer(updatedBestelling.getPersoneelsNummer());
+        retrievedBestelling.setGerechten(updatedBestelling.getGerechten());
+        retrievedBestelling.setTotaalPrijs(updatedBestelling.getTotaalPrijs());
 
         bestellingRepository.save((retrievedBestelling));
 
         return retrievedBestelling;
     }
 
-    @DeleteMapping("/bestellingen/bestelnummer/{bestelNummer}/personeelsnummer/{personeelsNummer}")
-    public ResponseEntity deleteBestelling(@PathVariable String bestelNummer, @PathVariable String personeelsNummer) {
-        Bestelling bestelling = bestellingRepository.findBestellingByBestelNummerAndAndPersoneelsnummer(bestelNummer, personeelsNummer);
+    @DeleteMapping("/bestellingen/bestelnummer/{bestelNummer}")
+    public ResponseEntity deleteBestelling(@PathVariable String bestelNummer) {
+        Bestelling bestelling = bestellingRepository.findBestellingByBestelNummer(bestelNummer);
         if (bestelling!=null) {
             bestellingRepository.delete(bestelling);
             return ResponseEntity.ok().build();

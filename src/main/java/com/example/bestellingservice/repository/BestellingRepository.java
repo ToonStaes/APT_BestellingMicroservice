@@ -8,7 +8,6 @@ import java.util.List;
 
 @Repository
 public interface BestellingRepository extends MongoRepository<Bestelling, String> {
-    Bestelling findBestellingByBestelNummerAndAndPersoneelsnummer(String bestelNummer, String personeelsNummer);
     Bestelling findBestellingByBestelNummer(String bestelNummer);
-    List<Bestelling> findBestellingByPersoneelsnummer(String personeelsnummer);
+    List<Bestelling> findBestellingByPersoneelsNummer(String personeelsNummer);
 }

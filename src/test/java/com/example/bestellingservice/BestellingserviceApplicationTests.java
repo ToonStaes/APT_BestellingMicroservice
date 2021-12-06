@@ -10,4 +10,9 @@ class BestellingserviceApplicationTests {
     void contextLoads() {
     }
 
+    @Test
+    public void applicationContextTest() {
+        BestellingserviceApplication.main(new String[] {});
+    }
+
 }
