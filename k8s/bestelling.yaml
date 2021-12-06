@@ -60,7 +60,7 @@ spec:
         imagePullPolicy: IfNotPresent
         ports:
           - name: http
-            containerPort: 8053 # The port that the container exposes
+            containerPort: 8052 # The port that the container exposes
         resources:
           limits:
             cpu: 0.2
@@ -81,7 +81,7 @@ spec:
   type: NodePort                 # The service will be exposed by opening a Port on each node and proxying it. Allowing connections from outside the cluster
   selector:
     app: bestelling-service-server   # The service exposes Pods with label `app=bestelling-service-server`
-  ports:                         # Forward incoming connections on port 8053 to the target port 8053
+  ports:                         # Forward incoming connections on port 8052 to the target port 8052
   - name: http
-    port: 8053
-    targetPort: 8053
+    port: 8052
+    targetPort: 8052
