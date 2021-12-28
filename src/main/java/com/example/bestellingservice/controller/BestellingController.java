@@ -41,7 +41,6 @@ public class BestellingController {
         Bestelling retrievedBestelling = bestellingRepository.findBestellingByBestelNummer(updatedBestelling.getBestelNummer());
         retrievedBestelling.setPersoneelsNummer(updatedBestelling.getPersoneelsNummer());
         retrievedBestelling.setGerechten(updatedBestelling.getGerechten());
-        retrievedBestelling.setTotaalPrijs(updatedBestelling.getTotaalPrijs());
 
         bestellingRepository.save((retrievedBestelling));
 
@@ -68,9 +67,9 @@ public class BestellingController {
             gerechten.add("Pizza Margherita");
             gerechten.add("Pizza Salami");
             gerechten.add("Pizza Hawaii");
-            bestellingRepository.save(new Bestelling("1", "2", gerechten, 120.49));
-            bestellingRepository.save(new Bestelling("2", "2", gerechten, 120.49));
-            bestellingRepository.save(new Bestelling("3", "1", gerechten, 120.49));
+            bestellingRepository.save(new Bestelling("1", "2", gerechten));
+            bestellingRepository.save(new Bestelling("2", "2", gerechten));
+            bestellingRepository.save(new Bestelling("3", "1", gerechten));
         }
 
         System.out.println("Bestelling test: " + bestellingRepository.findAll().size());

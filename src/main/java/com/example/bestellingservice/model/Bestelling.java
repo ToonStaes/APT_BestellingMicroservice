@@ -11,13 +11,11 @@ public class Bestelling {
     private String bestelNummer;
     private String personeelsNummer;
     private List<String> gerechten;
-    private double totaalPrijs;
 
-    public Bestelling(String bestelNummer, String personeelsNummer, List<String> gerechten, double totaalPrijs) {
+    public Bestelling(String bestelNummer, String personeelsNummer, List<String> gerechten) {
         this.bestelNummer = bestelNummer;
         this.personeelsNummer = personeelsNummer;
         this.gerechten = gerechten;
-        this.totaalPrijs = totaalPrijs;
     }
 
     public String getId() {
@@ -42,13 +40,5 @@ public class Bestelling {
 
     public void setGerechten(List<String> gerechten) {
         this.gerechten = gerechten;
-    }
-
-    public double getTotaalPrijs() {
-        return totaalPrijs;
-    }
-
-    public void setTotaalPrijs(double totaalPrijs) {
-        this.totaalPrijs = totaalPrijs;
     }
 }
