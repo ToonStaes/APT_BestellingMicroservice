@@ -31,7 +31,8 @@ public class BestellingController {
     }
 
     @PostMapping("/bestellingen")
-    public Bestelling addBestelling(@RequestBody Bestelling bestelling) {
+    public Bestelling addBestelling(@RequestBody Bestelling bestellingDto) {
+        Bestelling bestelling = new Bestelling(bestellingDto.getBestelNummer(), bestellingDto.getPersoneelsNummer(), bestellingDto.getGerechten());
         bestellingRepository.save(bestelling);
         return bestelling;
     }
@@ -63,7 +64,7 @@ public class BestellingController {
     public void fillDB() {
         bestellingRepository.deleteAll();
         if(bestellingRepository.count() == 0) {
-            List<String> gerechten = new ArrayList<String>();
+            List<String> gerechten = new ArrayList<>();
             gerechten.add("Pizza Margherita");
             gerechten.add("Pizza Salami");
             gerechten.add("Pizza Hawaii");
