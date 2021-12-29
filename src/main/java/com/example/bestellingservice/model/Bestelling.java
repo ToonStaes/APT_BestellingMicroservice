@@ -29,6 +29,10 @@ public class Bestelling {
         return bestelNummer;
     }
 
+    public void setBestelNummer(String bestelNummer) {
+        this.bestelNummer = bestelNummer;
+    }
+
     public String getPersoneelsNummer() {
         return personeelsNummer;
     }
