@@ -25,7 +25,7 @@ import java.util.List;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class BestellingControllerUnitTests {
+class BestellingControllerUnitTests {
 
     @Autowired
     private MockMvc mockMvc;
@@ -61,7 +61,7 @@ public class BestellingControllerUnitTests {
     }
 
     @Test
-    public void givenBestelling_whenGetBestelinngen_thenReturnJsonReviews() throws Exception {
+    void givenBestelling_whenGetBestelinngen_thenReturnJsonReviews() throws Exception {
         List<Bestelling> bestellingList = new ArrayList<>();
         bestellingList.add(bestellingnNummer1Personeel1);
         bestellingList.add(bestellingnNummer2Personeel1);
@@ -89,7 +89,7 @@ public class BestellingControllerUnitTests {
     }
 
     @Test
-    public void givenBestelling_whenGetBestellingByBestelnummer_thenReturnJsonReview() throws Exception {
+    void givenBestelling_whenGetBestellingByBestelnummer_thenReturnJsonReview() throws Exception {
         given(bestellingRepository.findBestellingByBestelNummer(bestellingnNummer1Personeel1.getBestelNummer())).willReturn(bestellingnNummer1Personeel1);
 
         mockMvc.perform(get("/bestellingen/bestelnummer/{bestelNummer}", "1"))
@@ -100,7 +100,7 @@ public class BestellingControllerUnitTests {
     }
 
     @Test
-    public void givenBestelling_whenGetBestellingByPersoneelsNummer_thenReturnJsonReviews() throws Exception {
+    void givenBestelling_whenGetBestellingByPersoneelsNummer_thenReturnJsonReviews() throws Exception {
         List<Bestelling> bestellingList = new ArrayList<>();
         bestellingList.add(bestellingnNummer1Personeel1);
         bestellingList.add(bestellingnNummer2Personeel1);
@@ -118,7 +118,7 @@ public class BestellingControllerUnitTests {
     }
 
     @Test
-    public void whenPostBestelling_thenReturnJsonReview() throws Exception {
+    void whenPostBestelling_thenReturnJsonReview() throws Exception {
         Bestelling bestelling = new Bestelling("5", "3", gerechten1);
 
         mockMvc.perform(post("/bestellingen")
@@ -132,7 +132,7 @@ public class BestellingControllerUnitTests {
     }
 
     @Test
-    public void givenBestelling_whenPutBestelling_thenReturnJsonReview() throws Exception {
+    void givenBestelling_whenPutBestelling_thenReturnJsonReview() throws Exception {
         given(bestellingRepository.findBestellingByBestelNummer("1")).willReturn(bestellingnNummer1Personeel1);
 
         Bestelling updatedBestelling = new Bestelling("1", "2", gerechten2);
@@ -148,7 +148,7 @@ public class BestellingControllerUnitTests {
     }
 
     @Test
-    public void givenBestelling_whenDeleteBestelling_thenStatusOk() throws Exception {
+    void givenBestelling_whenDeleteBestelling_thenStatusOk() throws Exception {
         given(bestellingRepository.findBestellingByBestelNummer("4")).willReturn(bestellingnNummer4Personeel3);
 
         mockMvc.perform(delete("/bestellingen/bestelnummer/{bestelNummer}", "4")
@@ -157,7 +157,7 @@ public class BestellingControllerUnitTests {
     }
 
     @Test
-    public void givenNoBestelling_whenDeleteBestelling_thenStatusNotFound() throws Exception {
+    void givenNoBestelling_whenDeleteBestelling_thenStatusNotFound() throws Exception {
         given(bestellingRepository.findBestellingByBestelNummer("5")).willReturn(null);
 
         mockMvc.perform(delete("/bestellingen/bestelnummer/{bestelNummer}}", "5")
