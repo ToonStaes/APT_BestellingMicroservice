@@ -9,7 +9,6 @@ import java.util.List;
 @Document(collection = "bestellingen")
 public class Bestelling {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
     private String bestelNummer;
     private String personeelsNummer;
