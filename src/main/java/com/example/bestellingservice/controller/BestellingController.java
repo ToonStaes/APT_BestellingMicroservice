@@ -48,7 +48,7 @@ public class BestellingController {
     }
 
     @DeleteMapping("/bestellingen/bestelnummer/{bestelNummer}")
-    public ResponseEntity deleteBestelling(@PathVariable String bestelNummer) {
+    public ResponseEntity<?> deleteBestelling(@PathVariable String bestelNummer) {
         Bestelling bestelling = bestellingRepository.findBestellingByBestelNummer(bestelNummer);
         if (bestelling!=null) {
             bestellingRepository.delete(bestelling);

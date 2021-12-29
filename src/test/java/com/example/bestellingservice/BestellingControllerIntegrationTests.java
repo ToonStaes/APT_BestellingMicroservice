@@ -21,7 +21,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class BestellingControllerIntegrationTests {
+class BestellingControllerIntegrationTests {
     @Autowired
     private MockMvc mockMvc;
 
@@ -62,7 +62,7 @@ public class BestellingControllerIntegrationTests {
     private ObjectMapper mapper = new ObjectMapper();
 
     @Test
-    public void givenBestelling_whenGetBestellingen_thenReturnJsonReviews() throws Exception {
+    void givenBestelling_whenGetBestellingen_thenReturnJsonReviews() throws Exception {
         List<Bestelling> bestellingList = new ArrayList<>();
         bestellingList.add(bestellingnNummer1Personeel1);
         bestellingList.add(bestellingnNummer2Personeel1);
@@ -88,7 +88,7 @@ public class BestellingControllerIntegrationTests {
     }
 
     @Test
-    public void givenBestelling_whenGetBestellingByBestelNummer_thenReturnJsonReview() throws Exception {
+    void givenBestelling_whenGetBestellingByBestelNummer_thenReturnJsonReview() throws Exception {
         mockMvc.perform(get("/bestellingen/bestelnummer/{bestelNummer}", "1"))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
@@ -97,7 +97,7 @@ public class BestellingControllerIntegrationTests {
     }
 
     @Test
-    public void givenBestelling_whenGetBestellingByPersoneelsNummer_thenReturnJsonReviews() throws Exception {
+    void givenBestelling_whenGetBestellingByPersoneelsNummer_thenReturnJsonReviews() throws Exception {
         mockMvc.perform(get("/bestellingen/personeelsnummer/{personeelsNummer}", "1"))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
@@ -109,7 +109,7 @@ public class BestellingControllerIntegrationTests {
     }
 
     @Test
-    public void whenPostBestelling_thenReturnJsonReview() throws Exception {
+    void whenPostBestelling_thenReturnJsonReview() throws Exception {
         Bestelling bestelling = new Bestelling("5", "3", gerechten1);
 
         mockMvc.perform(post("/bestellingen")
@@ -123,21 +123,21 @@ public class BestellingControllerIntegrationTests {
     }
 
     @Test
-    public void givenBestelling_whenDeleteBestelling_thenStatusOk() throws Exception {
+    void givenBestelling_whenDeleteBestelling_thenStatusOk() throws Exception {
         mockMvc.perform(delete("/bestellingen/bestelnummer/{bestelNummer}", "2")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
 
     @Test
-    public void givenNoBestelling_whenDeleteBestelling_thenStatusNotFound() throws Exception {
+    void givenNoBestelling_whenDeleteBestelling_thenStatusNotFound() throws Exception {
         mockMvc.perform(delete("/bestellingen/bestelnummer/{bestelNummer}", "6")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNotFound());
     }
 
     @Test
-    public void givenReview_whenPutBestelling_thenReturnJsonReview() throws Exception {
+    void givenReview_whenPutBestelling_thenReturnJsonReview() throws Exception {
         Bestelling updatedBestelling = new Bestelling("1", "1", gerechten2);
         mockMvc.perform(put("/bestellingen")
                 .content(mapper.writeValueAsString(updatedBestelling))
