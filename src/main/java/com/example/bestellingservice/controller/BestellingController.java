@@ -1,6 +1,7 @@
 package com.example.bestellingservice.controller;
 
 import com.example.bestellingservice.model.Bestelling;
+import com.example.bestellingservice.model.BestellingDto;
 import com.example.bestellingservice.repository.BestellingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -31,7 +32,7 @@ public class BestellingController {
     }
 
     @PostMapping("/bestellingen")
-    public Bestelling addBestelling(@RequestBody Bestelling bestellingDto) {
+    public Bestelling addBestelling(@RequestBody BestellingDto bestellingDto) {
         Bestelling bestelling = new Bestelling(bestellingDto.getBestelNummer(), bestellingDto.getPersoneelsNummer(), bestellingDto.getGerechten());
         bestellingRepository.save(bestelling);
         return bestelling;
