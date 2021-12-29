@@ -48,7 +48,7 @@ public class BestellingController {
     }
 
     @DeleteMapping("/bestellingen/bestelnummer/{bestelNummer}")
-    public ResponseEntity<?> deleteBestelling(@PathVariable String bestelNummer) {
+    public ResponseEntity<String> deleteBestelling(@PathVariable String bestelNummer) {
         Bestelling bestelling = bestellingRepository.findBestellingByBestelNummer(bestelNummer);
         if (bestelling!=null) {
             bestellingRepository.delete(bestelling);
@@ -63,7 +63,7 @@ public class BestellingController {
     public void fillDB() {
         bestellingRepository.deleteAll();
         if(bestellingRepository.count() == 0) {
-            List<String> gerechten = new ArrayList();
+            List<String> gerechten = new ArrayList<String>();
             gerechten.add("Pizza Margherita");
             gerechten.add("Pizza Salami");
             gerechten.add("Pizza Hawaii");
