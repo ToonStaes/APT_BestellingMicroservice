@@ -11,7 +11,7 @@ class BestellingserviceApplicationTests {
     }
 
     @Test
-    public void applicationContextTest() {
+    void applicationContextTest() {
         BestellingserviceApplication.main(new String[] {});
     }
 
