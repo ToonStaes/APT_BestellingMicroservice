@@ -42,10 +42,14 @@ public class BestellingController {
     }
 
     @PutMapping("/bestellingen")
-    public Bestelling updateBestelling(@RequestBody Bestelling updatedBestelling) {
-        Bestelling retrievedBestelling = bestellingRepository.findBestellingByBestelNummer(updatedBestelling.getBestelNummer());
-        retrievedBestelling.setPersoneelsNummer(updatedBestelling.getPersoneelsNummer());
-        retrievedBestelling.setGerechten(updatedBestelling.getGerechten());
+    public Bestelling updateBestelling(@RequestBody BestellingDto updatedBestellingDto) {
+        Bestelling bestelling = new Bestelling();
+        bestelling.setBestelNummer(updatedBestellingDto.getBestelNummer());
+        bestelling.setPersoneelsNummer(updatedBestellingDto.getPersoneelsNummer());
+        bestelling.setGerechten(updatedBestellingDto.getGerechten());
+        Bestelling retrievedBestelling = bestellingRepository.findBestellingByBestelNummer(bestelling.getBestelNummer());
+        retrievedBestelling.setPersoneelsNummer(bestelling.getPersoneelsNummer());
+        retrievedBestelling.setGerechten(bestelling.getGerechten());
 
         bestellingRepository.save((retrievedBestelling));
 
@@ -76,7 +80,5 @@ public class BestellingController {
             bestellingRepository.save(new Bestelling("2", "2", gerechten));
             bestellingRepository.save(new Bestelling("3", "1", gerechten));
         }
-
-        System.out.println("Bestelling test: " + bestellingRepository.findAll().size());
     }
 }
