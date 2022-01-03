@@ -46,11 +46,11 @@ class BestellingControllerUnitTests {
 
     @BeforeEach
     public void beforeAllTests() {
-        gerechten1.add("Pizza Margherita");
-        gerechten1.add("Pizza Salami");
-        gerechten1.add("Pizza Hawaii");
-        gerechten2.add("Pizza Margherita");
-        gerechten3.add("Pizza Salami");
+        gerechten1.add("20220103PM");
+        gerechten1.add("20200103PS");
+        gerechten1.add("20200103PH");
+        gerechten2.add("20220103PM");
+        gerechten3.add("20200103PS");
     }
 
     @AfterEach

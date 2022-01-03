@@ -72,9 +72,9 @@ public class BestellingController {
     public void fillDB() {
         if(bestellingRepository.count() == 0) {
             List<String> gerechten = new ArrayList<>();
-            gerechten.add("Pizza Margherita");
-            gerechten.add("Pizza Salami");
-            gerechten.add("Pizza Hawaii");
+            gerechten.add("20220103PM");
+            gerechten.add("20200103PH");
+            gerechten.add("20200103PS");
             bestellingRepository.save(new Bestelling("1", "2", gerechten));
             bestellingRepository.save(new Bestelling("2", "2", gerechten));
             bestellingRepository.save(new Bestelling("3", "1", gerechten));
