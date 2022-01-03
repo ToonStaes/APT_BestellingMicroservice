@@ -57,7 +57,7 @@ spec:
       containers:
       - name: bestelling-service-server
         image: r0784094/bestelling-service
-        imagePullPolicy: always
+        imagePullPolicy: Always
         ports:
           - name: http
             containerPort: 8052 # The port that the container exposes
