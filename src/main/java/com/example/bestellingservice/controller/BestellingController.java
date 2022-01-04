@@ -78,11 +78,8 @@ public class BestellingController {
             gerechten.add("20200103PH");
             gerechten.add("20200103PS");
             bestellingRepository.save(new Bestelling("K20220103AH", gerechten));
-            TimeUnit.SECONDS.sleep(1);
             bestellingRepository.save(new Bestelling("K20220103AH", gerechten));
-            TimeUnit.SECONDS.sleep(1);
             bestellingRepository.save(new Bestelling("K20220103TS", gerechten));
-            TimeUnit.SECONDS.sleep(1);
             bestellingRepository.save(new Bestelling("Z20220103NV", gerechten));
         }
     }
