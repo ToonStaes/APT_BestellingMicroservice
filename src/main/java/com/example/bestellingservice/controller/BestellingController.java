@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @RestController
 public class BestellingController {
@@ -74,11 +75,15 @@ public class BestellingController {
         if(bestellingRepository.count() == 0) {
             List<String> gerechten = new ArrayList<>();
             gerechten.add("20220103PM");
-            gerechten.add("20220103PH");
-            gerechten.add("20220103PS");
-            bestellingRepository.save(new Bestelling("1", "K20220103AH", gerechten));
-            bestellingRepository.save(new Bestelling("2", "K20220103TS", gerechten));
-            bestellingRepository.save(new Bestelling("3", "Z20220103NV", gerechten));
+            gerechten.add("20200103PH");
+            gerechten.add("20200103PS");
+            bestellingRepository.save(new Bestelling("K20220103AH", gerechten));
+            TimeUnit.SECONDS.sleep(1);
+            bestellingRepository.save(new Bestelling("K20220103AH", gerechten));
+            TimeUnit.SECONDS.sleep(1);
+            bestellingRepository.save(new Bestelling("K20220103TS", gerechten));
+            TimeUnit.SECONDS.sleep(1);
+            bestellingRepository.save(new Bestelling("Z20220103NV", gerechten));
         }
     }
 }
