@@ -70,11 +70,12 @@ public class BestellingController {
 
     @PostConstruct
     public void fillDB() {
+        bestellingRepository.deleteAll();
         if(bestellingRepository.count() == 0) {
             List<String> gerechten = new ArrayList<>();
             gerechten.add("20220103PM");
-            gerechten.add("20200103PH");
-            gerechten.add("20200103PS");
+            gerechten.add("20220103PH");
+            gerechten.add("20220103PS");
             bestellingRepository.save(new Bestelling("1", "K20220103AH", gerechten));
             bestellingRepository.save(new Bestelling("2", "K20220103TS", gerechten));
             bestellingRepository.save(new Bestelling("3", "Z20220103NV", gerechten));
