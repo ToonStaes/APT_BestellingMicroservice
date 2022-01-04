@@ -58,11 +58,8 @@ class BestellingControllerUnitTests {
         gerechten2.add("20220103PM");
         gerechten3.add("20200103PS");
         bestellingnNummer1Personeel1 = new Bestelling("K20220103AH", gerechten1);
-        TimeUnit.SECONDS.sleep(1);
         bestellingnNummer2Personeel1 = new Bestelling("K20220103AH", gerechten2);
-        TimeUnit.SECONDS.sleep(1);
         bestellingnNummer3Personeel2 = new Bestelling("K20220103TS", gerechten3);
-        TimeUnit.SECONDS.sleep(1);
         bestellingnNummer4Personeel3 = new Bestelling("Z20220103NV", gerechten2);
         bestelnummer1 = bestellingnNummer1Personeel1.getBestelNummer();
         bestelnummer2 = bestellingnNummer2Personeel1.getBestelNummer();
