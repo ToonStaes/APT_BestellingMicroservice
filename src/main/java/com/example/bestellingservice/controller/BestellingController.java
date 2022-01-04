@@ -8,8 +8,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 @RestController
@@ -77,10 +80,28 @@ public class BestellingController {
             gerechten.add("20220103PM");
             gerechten.add("20200103PH");
             gerechten.add("20200103PS");
-            bestellingRepository.save(new Bestelling("K20220103AH", gerechten));
-            bestellingRepository.save(new Bestelling("K20220103AH", gerechten));
-            bestellingRepository.save(new Bestelling("K20220103TS", gerechten));
-            bestellingRepository.save(new Bestelling("Z20220103NV", gerechten));
+            Bestelling bestellingArne1 = new Bestelling("K20220103AH", gerechten);
+            Bestelling bestellingArne2 = new Bestelling("K20220103AH", gerechten);
+            Bestelling bestellingToon = new Bestelling("K20220103TS", gerechten);
+            Bestelling bestellingNiels = new Bestelling("Z20220103NV", gerechten);
+            bestellingArne1.setBestelNummer(generateBestelnummer(bestellingArne1.getPersoneelsNummer()));
+            bestellingArne2.setBestelNummer(generateBestelnummer(bestellingArne2.getPersoneelsNummer()));
+            bestellingToon.setBestelNummer(generateBestelnummer(bestellingToon.getPersoneelsNummer()));
+            bestellingNiels.setBestelNummer(generateBestelnummer(bestellingNiels.getPersoneelsNummer()));
+            bestellingRepository.save(bestellingArne1);
+            bestellingRepository.save(bestellingArne2);
+            bestellingRepository.save(bestellingToon);
+            bestellingRepository.save(bestellingNiels);
         }
+    }
+
+    public String generateBestelnummer(String personeelsNummer) {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddhhmmss");
+        Date date = new Date();
+        String datestring = formatter.format(date);
+        UUID random = UUID.randomUUID();
+        String bestelnummer = datestring +  personeelsNummer.substring(personeelsNummer.length() - 2) + random;
+
+        return bestelnummer;
     }
 }
