@@ -70,7 +70,7 @@ public class BestellingController {
     }
 
     @PostConstruct
-    public void fillDB() throws InterruptedException {
+    public void fillDB() {
         bestellingRepository.deleteAll();
         if(bestellingRepository.count() == 0) {
             List<String> gerechten = new ArrayList<>();
