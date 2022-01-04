@@ -20,8 +20,11 @@ import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 @SpringBootTest
@@ -50,6 +53,16 @@ class BestellingControllerUnitTests {
     private String bestelnummer3 = null;
     private String bestelnummer4 = null;
 
+    public String generateBestelnummer(String personeelsNummer) {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddhhmmss");
+        Date date = new Date();
+        String datestring = formatter.format(date);
+        UUID random = UUID.randomUUID();
+        String bestelnummer = datestring +  personeelsNummer.substring(personeelsNummer.length() - 2) + random;
+
+        return bestelnummer;
+    }
+
     @BeforeEach
     public void beforeAllTests() throws InterruptedException {
         gerechten1.add("20220103PM");
@@ -61,6 +74,10 @@ class BestellingControllerUnitTests {
         bestellingnNummer2Personeel1 = new Bestelling("K20220103AH", gerechten2);
         bestellingnNummer3Personeel2 = new Bestelling("K20220103TS", gerechten3);
         bestellingnNummer4Personeel3 = new Bestelling("Z20220103NV", gerechten2);
+        bestellingnNummer1Personeel1.setBestelNummer(generateBestelnummer(bestellingnNummer1Personeel1.getPersoneelsNummer()));
+        bestellingnNummer2Personeel1.setBestelNummer(generateBestelnummer(bestellingnNummer2Personeel1.getPersoneelsNummer()));
+        bestellingnNummer3Personeel2.setBestelNummer(generateBestelnummer(bestellingnNummer3Personeel2.getPersoneelsNummer()));
+        bestellingnNummer4Personeel3.setBestelNummer(generateBestelnummer(bestellingnNummer4Personeel3.getPersoneelsNummer()));
         bestelnummer1 = bestellingnNummer1Personeel1.getBestelNummer();
         bestelnummer2 = bestellingnNummer2Personeel1.getBestelNummer();
         bestelnummer3 = bestellingnNummer3Personeel2.getBestelNummer();

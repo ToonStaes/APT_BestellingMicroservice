@@ -49,18 +49,8 @@ public class Bestelling {
     }
 
     public Bestelling(String personeelsNummer, List<String> gerechten) {
-        this.bestelNummer = generateBestelnummer(personeelsNummer);
         this.personeelsNummer = personeelsNummer;
         this.gerechten = gerechten;
     }
 
-    public String generateBestelnummer(String personeelsNummer) {
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddhhmmss");
-        Date date = new Date();
-        String datestring = formatter.format(date);
-        UUID random = UUID.randomUUID();
-        String bestelnummer = datestring +  personeelsNummer.substring(personeelsNummer.length() - 2) + random;
-
-        return bestelnummer;
-    }
 }
