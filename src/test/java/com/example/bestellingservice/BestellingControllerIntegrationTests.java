@@ -40,7 +40,6 @@ class BestellingControllerIntegrationTests {
     private Bestelling bestellingnNummer2Personeel1 = null;
     private Bestelling bestellingnNummer3Personeel2 = null;
     private Bestelling bestellingnNummer4Personeel3 = null;
-    private String postBestelnummer = "";
     private String bestelnummer1 = null;
     private String bestelnummer2 = null;
     private String bestelnummer3 = null;
@@ -84,7 +83,6 @@ class BestellingControllerIntegrationTests {
 
     @AfterEach
     public void afterAllTests() {
-        postBestelnummer = "";
         gerechten1.clear();
         gerechten2.clear();
         gerechten3.clear();
@@ -143,14 +141,13 @@ class BestellingControllerIntegrationTests {
     @Test
     void whenPostBestelling_thenReturnJsonReview() throws Exception {
         Bestelling bestelling = new Bestelling("K20220103TS", gerechten1);
-        postBestelnummer = bestelling.getBestelNummer();
 
         mockMvc.perform(post("/bestellingen")
                 .content(mapper.writeValueAsString(bestelling))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.bestelNummer", is(postBestelnummer)))
+                .andExpect(jsonPath("$.bestelNummer").isNotEmpty())
                 .andExpect(jsonPath("$.personeelsNummer", is("K20220103TS")))
                 .andExpect(jsonPath("$.gerechten", is(gerechten1)));
     }
