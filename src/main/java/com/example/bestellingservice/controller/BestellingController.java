@@ -38,7 +38,7 @@ public class BestellingController {
     @PostMapping("/bestellingen")
     public Bestelling addBestelling(@RequestBody BestellingDto bestellingDto) {
         Bestelling bestelling = new Bestelling();
-        bestelling.setBestelNummer(bestellingDto.getBestelNummer());
+        bestelling.setBestelNummer(generateBestelnummer(bestellingDto.getPersoneelsNummer()));
         bestelling.setPersoneelsNummer(bestellingDto.getPersoneelsNummer());
         bestelling.setGerechten(bestellingDto.getGerechten());
         bestellingRepository.save(bestelling);
