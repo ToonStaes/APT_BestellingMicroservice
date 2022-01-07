@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
-import java.util.concurrent.TimeUnit;
 
 @RestController
 public class BestellingController {
@@ -74,7 +73,6 @@ public class BestellingController {
 
     @PostConstruct
     public void fillDB() {
-        bestellingRepository.deleteAll();
         if(bestellingRepository.count() == 0) {
             List<String> gerechten = new ArrayList<>();
             gerechten.add("20220103PM");
@@ -100,8 +98,7 @@ public class BestellingController {
         Date date = new Date();
         String datestring = formatter.format(date);
         UUID random = UUID.randomUUID();
-        String bestelnummer = datestring +  personeelsNummer.substring(personeelsNummer.length() - 2) + random;
 
-        return bestelnummer;
+        return datestring +  personeelsNummer.substring(personeelsNummer.length() - 2) + random;
     }
 }
